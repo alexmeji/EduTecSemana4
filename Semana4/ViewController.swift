@@ -37,6 +37,10 @@ class ViewController: UIViewController, UIWebViewDelegate {
         case 3:
             url = URL(string: "http://www.youtube.com")!
             break
+        case 4:
+            let path = Bundle.main.path(forResource: "webview", ofType: "html")
+            url = URL(fileURLWithPath: path!)
+            break
         default:
             url = URL(string: "http://www.google.com.gt")!
             break
