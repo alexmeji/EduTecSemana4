@@ -11,44 +11,23 @@ import UIKit
 class ViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet var webView: UIWebView?
-    @IBOutlet var segmentedControl: UISegmentedControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let url = URL(string: "http://www.google.com.gt")
-        let urlRequest = URLRequest(url: url!)
+        
+        let url: URL
+        if webView?.tag == 1 {
+            url = URL(string: "http://www.google.com.gt")!
+        } else {
+            url = URL(string: "http://www.youtube.com")!
+        }
+        
+        let urlRequest = URLRequest(url: url)
         self.webView?.loadRequest(urlRequest)
         self.webView?.delegate = self
     }
     
-    @IBAction func changeWebPage(sender: UISegmentedControl) {
-        let url: URL
-        switch sender.selectedSegmentIndex {
-        case 0:
-            url = URL(string: "http://www.google.com.gt")!
-            break
-        case 1:
-            url = URL(string: "http://www.apple.com")!
-            break
-        case 2:
-            url = URL(string: "http://www.facebook.com")!
-            break
-        case 3:
-            url = URL(string: "http://www.youtube.com")!
-            break
-        case 4:
-            let path = Bundle.main.path(forResource: "webview", ofType: "html")
-            url = URL(fileURLWithPath: path!)
-            break
-        default:
-            url = URL(string: "http://www.google.com.gt")!
-            break
-        }
-        let urlRequest = URLRequest(url: url)
-        self.webView?.loadRequest(urlRequest)
-    }
-
     func webViewDidStartLoad(_ webView: UIWebView) {
         print("Comenzo a Cargar")
     }
