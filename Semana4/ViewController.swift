@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet var webView: UIWebView?
     @IBOutlet var segmentedControl: UISegmentedControl?
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         let url = URL(string: "http://www.google.com.gt")
         let urlRequest = URLRequest(url: url!)
         self.webView?.loadRequest(urlRequest)
+        self.webView?.delegate = self
     }
     
     @IBAction func changeWebPage(sender: UISegmentedControl) {
@@ -44,6 +45,14 @@ class ViewController: UIViewController {
         self.webView?.loadRequest(urlRequest)
     }
 
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        print("Comenzo a Cargar")
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("Termino de Cargar")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
