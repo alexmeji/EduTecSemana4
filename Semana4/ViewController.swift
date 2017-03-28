@@ -16,12 +16,8 @@ class ViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let url: URL
-        if webView?.tag == 1 {
-            url = URL(string: "http://www.google.com.gt")!
-        } else {
-            url = URL(string: "http://www.youtube.com")!
-        }
+        let url: URL = URL(string: "http://www.youtube.com")!
+        
         
         let urlRequest = URLRequest(url: url)
         self.webView?.loadRequest(urlRequest)
